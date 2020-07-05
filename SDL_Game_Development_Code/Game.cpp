@@ -1,5 +1,7 @@
 #include "Game.h"
 
+Game* Game::s_pInstance = 0;
+
 bool Game::init(const char* title, int xpos, int ypos, int width,int height, bool fullscreen)
 {
 	// attempt to initialize SDL
@@ -47,17 +49,8 @@ bool Game::init(const char* title, int xpos, int ypos, int width,int height, boo
 		return false;
 	}
 
-	m_go = new GameObject();
-	m_player = new Player();
-	m_enemy = new Enemy();
-
-	m_go->load(100, 100, 128, 82, "animate");
-	m_player->load(300, 300, 128, 82, "animate");
-	m_enemy->load(0, 0, 128, 82, "animate");
-	
-	m_gameObjects.push_back(m_go);
-	m_gameObjects.push_back(m_player);
-	m_gameObjects.push_back(m_enemy);
+	m_gameObjects.push_back(new Player(new LoaderParams(100, 100, 128, 82,"animate")));
+	m_gameObjects.push_back(new Enemy(new LoaderParams(300, 300, 128, 82,"animate")));
 	
 	return true;
 }
@@ -68,7 +61,7 @@ void Game::render()
 	SDL_SetRenderDrawColor(m_pRenderer, 255, 0, 0, 255);
 	for (std::vector<GameObject*>::size_type i = 0; i != m_gameObjects.size(); i++)
 	{
-		m_gameObjects[i]->draw(m_pRenderer);
+		m_gameObjects[i]->draw();
 	}
 	SDL_RenderPresent(m_pRenderer); // draw to the screen
 }
