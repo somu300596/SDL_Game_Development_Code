@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "InputHandler.h"
 
 Game* Game::s_pInstance = 0;
 
@@ -51,6 +52,8 @@ bool Game::init(const char* title, int xpos, int ypos, int width,int height, boo
 
 	m_gameObjects.push_back(new Player(new LoaderParams(100, 100, 128, 82,"animate")));
 	m_gameObjects.push_back(new Enemy(new LoaderParams(300, 300, 128, 82,"animate")));
+
+	InputHandler::Instance()->initialiseJoysticks();
 	
 	return true;
 }
@@ -77,6 +80,7 @@ void Game::update()
 void Game::clean()
 {
 	std::cout << "cleaning game\n";
+	InputHandler::Instance()->clean();
 	SDL_DestroyWindow(m_pWindow);
 	SDL_DestroyRenderer(m_pRenderer);
 	SDL_Quit();
@@ -84,16 +88,5 @@ void Game::clean()
 
 void Game::handleEvents()
 {
-	SDL_Event event;
-	if (SDL_PollEvent(&event))
-	{
-		switch (event.type)
-		{
-		case SDL_QUIT:
-			m_bRunning = false;
-			break;
-		default:
-			break;
-		}
-	}
+	InputHandler::Instance()->update();
 }
