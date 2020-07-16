@@ -6,6 +6,14 @@
 
 InputHandler* InputHandler::s_pInstance = 0;
 
+InputHandler::InputHandler() 
+{
+	for (int i = 0; i < 3; i++)
+	{
+		m_mouseButtonStates.push_back(false);
+	}
+}
+
 void InputHandler::initialiseJoysticks()
 {
 	if (SDL_WasInit(SDL_INIT_JOYSTICK) == 0)
@@ -22,12 +30,6 @@ void InputHandler::initialiseJoysticks()
 				m_joysticks.push_back(joy);
 				m_joystickValues.push_back(std::make_pair(new
 					Vector2D(0, 0), new Vector2D(0, 0))); // add our pair
-				std::vector<bool> tempButtons;
-				for (int j = 0; j < SDL_JoystickNumButtons(joy); j++)
-				{
-					tempButtons.push_back(false);
-				}
-				m_buttonStates.push_back(tempButtons);
 			}
 			else
 			{
@@ -85,11 +87,6 @@ void InputHandler::clean()
 			SDL_JoystickClose(m_joysticks[i]);
 		}
 	}
-}
-
-bool InputHandler::getButtonState(int joy, int buttonNumber)
-{
-	return m_buttonStates[joy][buttonNumber];
 }
 
 void InputHandler::update()
@@ -172,15 +169,41 @@ void InputHandler::update()
 			}
 		}
 
-		if (event.type == SDL_JOYBUTTONDOWN)
+		if (event.type == SDL_MOUSEBUTTONDOWN)
 		{
-			int whichOne = event.jaxis.which;
-			m_buttonStates[whichOne][event.jbutton.button] = true;
+			if (event.button.button == SDL_BUTTON_LEFT)
+			{
+				m_mouseButtonStates[LEFT] = true;
+			}
+			if (event.button.button == SDL_BUTTON_MIDDLE)
+			{
+				m_mouseButtonStates[MIDDLE] = true;
+			}
+			if (event.button.button == SDL_BUTTON_RIGHT)
+			{
+				m_mouseButtonStates[RIGHT] = true;
+			}
 		}
-		if (event.type == SDL_JOYBUTTONUP)
+
+		if (event.type == SDL_MOUSEBUTTONUP)
 		{
-			int whichOne = event.jaxis.which;
-			m_buttonStates[whichOne][event.jbutton.button] = false;
+			if (event.button.button == SDL_BUTTON_LEFT)
+			{
+				m_mouseButtonStates[LEFT] = false;
+			}if (event.button.button == SDL_BUTTON_MIDDLE)
+			{
+				m_mouseButtonStates[MIDDLE] = false;
+			}
+			if (event.button.button == SDL_BUTTON_RIGHT)
+			{
+				m_mouseButtonStates[RIGHT] = false;
+			}
+		}
+
+		if (event.type == SDL_MOUSEMOTION)
+		{
+			m_mousePosition.setX(event.motion.x);
+			m_mousePosition.setY(event.motion.y);
 		}
 	}
 }
