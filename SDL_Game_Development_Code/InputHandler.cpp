@@ -78,6 +78,22 @@ int InputHandler::yvalue(int joy, int stick)
 	return 0;
 }
 
+bool InputHandler::isKeyDown(SDL_Scancode key)
+{
+	if (m_keystate != 0)
+	{
+		if (m_keystate[key] == 1)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	return false;
+}
+
 void InputHandler::clean()
 {
 	if (m_bJoysticksInitialised)
@@ -89,8 +105,11 @@ void InputHandler::clean()
 	}
 }
 
+
 void InputHandler::update()
 {
+	m_keystate = SDL_GetKeyboardState(0);
+
 	SDL_Event event;
 	while (SDL_PollEvent(&event))
 	{

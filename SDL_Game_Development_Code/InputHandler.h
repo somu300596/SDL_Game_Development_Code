@@ -41,6 +41,7 @@ public:
 	{
 		return m_mousePosition;
 	}
+	bool isKeyDown(SDL_Scancode key);
 
 private:
 	InputHandler();
@@ -56,6 +57,9 @@ private:
 	//Mouse related member variables
 	std::vector<bool> m_mouseButtonStates;
 	Vector2D m_mousePosition = {0,0};
+
+	//Keyboard related member variables
+	const Uint8* m_keystate;
 };
 
 typedef InputHandler TheInputHandler;
