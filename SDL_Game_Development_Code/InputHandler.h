@@ -59,7 +59,20 @@ private:
 	Vector2D m_mousePosition = {0,0};
 
 	//Keyboard related member variables
-	const Uint8* m_keystate;
+	const Uint8* m_keystates;
+
+	// private functions to handle different event types
+	// handle keyboard events
+	void onKeyDown();
+	void onKeyUp();
+	// handle mouse events
+	void onMouseMove(SDL_Event& event);
+	void onMouseButtonDown(SDL_Event& event);
+	void onMouseButtonUp(SDL_Event& event);
+	// handle joysticks events
+	void onJoystickAxisMove(SDL_Event& event);
+	void onJoystickButtonDown(SDL_Event& event);
+	void onJoystickButtonUp(SDL_Event& event);
 };
 
 typedef InputHandler TheInputHandler;
