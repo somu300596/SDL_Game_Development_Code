@@ -42,6 +42,7 @@ public:
 		return m_mousePosition;
 	}
 	bool isKeyDown(SDL_Scancode key);
+	void reset();
 
 private:
 	InputHandler();
