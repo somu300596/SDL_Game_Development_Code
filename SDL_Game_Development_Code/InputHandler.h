@@ -71,8 +71,6 @@ private:
 	void onMouseButtonUp(SDL_Event& event);
 	// handle joysticks events
 	void onJoystickAxisMove(SDL_Event& event);
-	void onJoystickButtonDown(SDL_Event& event);
-	void onJoystickButtonUp(SDL_Event& event);
 };
 
 typedef InputHandler TheInputHandler;

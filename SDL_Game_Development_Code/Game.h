@@ -8,6 +8,9 @@
 #include "GameObject.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "MenuState.h"
+#include "PlayState.h"
+#include "GameStateMachine.h"
 
 #include <iostream>
 #include <vector>
@@ -37,6 +40,7 @@ public:
 		}
 		return s_pInstance;
 	}
+	GameStateMachine* getStateMachine() { return m_pGameStateMachine; }
 
 private:
 
@@ -51,11 +55,10 @@ private:
 	GameObject* m_go;
 	GameObject* m_player;
 	GameObject* m_enemy;
-	std::vector<GameObject*> m_gameObjects;
-	
+	std::vector<GameObject*> m_gameObjects;	
 	int m_currentFrame;
-
 	bool m_bRunning;
+	GameStateMachine* m_pGameStateMachine;
 };
 // create the typedef
 typedef Game TheGame;
