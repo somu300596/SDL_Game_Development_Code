@@ -10,9 +10,12 @@ const std::string MenuState::s_menuID = "MENU";
 
 void MenuState::update()
 {
-	for (int i = 0; i < m_gameObjects.size(); i++)
-	{
-		m_gameObjects[i]->update();
+	int cObjects = m_gameObjects.size();
+
+	for (int i = 0; i < cObjects; i++) {
+		if (cObjects == m_gameObjects.size()) {
+			m_gameObjects[i]->update();
+		}
 	}
 }
 
