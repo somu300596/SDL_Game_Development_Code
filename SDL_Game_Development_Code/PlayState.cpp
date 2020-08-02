@@ -9,6 +9,7 @@
 #include "PauseState.h"
 #include "GameOverState.h"
 #include "StateParser.h"
+#include "LevelParser.h"
 
 const std::string PlayState::s_playID = "PLAY";
 
@@ -19,7 +20,8 @@ void PlayState::update()
 		TheGame::Instance()->getStateMachine()->pushState(new PauseState());
 	}
 
-	for (int i = 0; i < m_gameObjects.size(); i++)
+	pLevel->update();
+	/*for (int i = 0; i < m_gameObjects.size(); i++)
 	{
 		m_gameObjects[i]->update();
 	}
@@ -27,29 +29,30 @@ void PlayState::update()
 	if (checkCollision(dynamic_cast<SDLGameObject*>(m_gameObjects[0]), dynamic_cast<SDLGameObject*>(m_gameObjects[1])))
 	{
 		TheGame::Instance()->getStateMachine()->pushState(new GameOverState());
-	}
+	}*/
 }
 
 void PlayState::render()
 {
-	for (int i = 0; i < m_gameObjects.size(); i++)
+	/*for (int i = 0; i < m_gameObjects.size(); i++)
 	{
 		m_gameObjects[i]->draw();
-	}
+	}*/
+	pLevel->render();
 }
 
 bool PlayState::onEnter()
 {
-	// parse the state
-	StateParser stateParser;
-	stateParser.parseState("test.xml", s_playID, &m_gameObjects,&m_textureIDList);
-	std::cout << "entering PlayState\n";
+	LevelParser levelParser;
+	pLevel = levelParser.parseLevel("map1.tmx");
+
+	std::cout << "entering PlayState" << std::endl;
 	return true;
 }
 
 bool PlayState::onExit()
 {
-	for (int i = 0; i < m_gameObjects.size(); i++)
+	/*for (int i = 0; i < m_gameObjects.size(); i++)
 	{
 		m_gameObjects[i]->clean();
 	}
@@ -59,7 +62,7 @@ bool PlayState::onExit()
 	{
 		TheTextureManager::Instance()->
 			clearFromTextureMap(m_textureIDList[i]);
-	}
+	}*/
 
 	std::cout << "exiting PlayState" << std::endl;
 	return true;
@@ -67,7 +70,7 @@ bool PlayState::onExit()
 
 bool PlayState::checkCollision(SDLGameObject* p1, SDLGameObject* p2)
 {
-	int leftA, leftB;
+	/*int leftA, leftB;
 	int rightA, rightB;
 	int topA, topB;
 	int bottomA, bottomB;
@@ -87,7 +90,7 @@ bool PlayState::checkCollision(SDLGameObject* p1, SDLGameObject* p2)
 	if (bottomA <= topB) { return false; }
 	if (topA >= bottomB) { return false; }
 	if (rightA <= leftB) { return false; }
-	if (leftA >= rightB) { return false; }
+	if (leftA >= rightB) { return false; }*/
 
 	return true;
 }

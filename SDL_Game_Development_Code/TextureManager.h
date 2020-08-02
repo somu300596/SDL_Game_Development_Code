@@ -29,6 +29,9 @@ public:
 		return s_pInstance;
 	}
 	void TextureManager::clearFromTextureMap(std::string id);	
+	void TextureManager::drawTile(std::string id, int margin, int
+		spacing, int x, int y, int width, int height, int currentRow,
+		int currentFrame, SDL_Renderer *pRenderer);
 
 private:
 	TextureManager() {}

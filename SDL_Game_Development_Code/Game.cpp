@@ -48,6 +48,9 @@ bool Game::init(const char* title, int xpos, int ypos, int width,int height, boo
 	}
 	std::cout << "init success\n";
 	m_bRunning = true; // everything inited successfully, start the main loop
+
+	m_gameWidth = width;
+	m_gameHeight = height;
 	
 	TheInputHandler::Instance()->initialiseJoysticks();
 

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.4" tiledversion="1.4.1" orientation="orthogonal" renderorder="right-down" width="20" height="15" tilewidth="32" tileheight="32" infinite="0" nextlayerid="2" nextobjectid="1">
+ <tileset firstgid="1" name="blocks1" tilewidth="32" tileheight="32" spacing="2" margin="2">
+  <image source="blocks1.png" width="614" height="376"/>
+ </tileset>
+ <layer id="1" name="Tile Layer 1" width="20" height="15">
+  <data encoding="base64" compression="zstd">
+   KLUv/WCwA+0KACZwUR0QuN4C/P////////9/kwgAAAAAAAAAAAAAAACEfkQASQBLAHe3e93pPne5xx3ub3d729m+drVpR/vZzV52so9d7GEH+9e93nWub13rWcd6datXnepTl3rUof50pzed6UtXetKRfnSjR/ETN/ESJ/ERF/EQB/HDPbzDOXzDNTzDMfzCLbzCKXzCJTzCIfzBHWxwBl9wBU9wBD9wAy9wAh9wAQ9wAP+73/vOd+96zzveA2t5lmP5lVtZ5VQ+5VIe5VD+5E7e5Ey+5Eqe5Eh+5EZe5EQOuZAHOZD/uI/3OI/vuI7nOI7fuI3XOI3PuIwxDuMv7uItzuIrruIpAhdd0RMd0Q/d0Aud0Add0AMd0P/cz/ucz/dczzzH8zu38zqn8zmX8ziH8zd38zZn8zVX8zRH88zNvMzJfMzFPMzB/Mu9vMu5fMsLUBkAxpEyoAENaEADGtCABjSgAQc=
+  </data>
+ </layer>
+</map>

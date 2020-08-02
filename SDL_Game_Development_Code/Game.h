@@ -42,6 +42,16 @@ public:
 	}
 	GameStateMachine* getStateMachine() { return m_pGameStateMachine; }
 
+	int getGameWidth() const
+	{
+		return m_gameWidth;
+	}
+
+	int getGameHeight() const
+	{
+		return m_gameHeight;
+	}
+
 private:
 
 	Game() {}
@@ -59,6 +69,8 @@ private:
 	int m_currentFrame;
 	bool m_bRunning;
 	GameStateMachine* m_pGameStateMachine;
+	int m_gameWidth;
+	int m_gameHeight;
 };
 // create the typedef
 typedef Game TheGame;
